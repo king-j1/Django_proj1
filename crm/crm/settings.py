@@ -74,9 +74,16 @@ WSGI_APPLICATION = "crm.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # Django uses MySQL
+        'NAME': 'django_db',                   # Database name in MySQL
+        'USER': 'django_user',                 # MySQL username
+        'PASSWORD': 'MyDjangoPass123!',        # MySQL password
+        'HOST': '127.0.0.1',                   # Localhost
+        'PORT': '3306',                        # Default MySQL port
+        'OPTIONS': {
+            'charset': 'utf8mb4',              # Supports emojis & full Unicode
+        },
     }
 }
 
