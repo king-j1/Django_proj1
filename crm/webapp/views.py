@@ -21,7 +21,11 @@ def home(request):
     # GET request → just show the login form
     return render(request, "home.html", {})
 
+
+
 def logout_view(request):
     logout(request)
-    messages.info(request, "You have been logged out.")
+    messages.success(request, "You have been logged out.")
     return redirect("home")
+
+
