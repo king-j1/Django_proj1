@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Client{% endblock %}
+
+{% block content %}
+<div class="col-md-8 offset-md-2 mt-4">
+    <h2>Edit Client: {{ client.full_name }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="{% url 'client' client.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

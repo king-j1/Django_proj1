@@ -1,0 +1,6 @@
+<style>
+  body {
+    background: url("{% static 'images/bg.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+  }
+</style>
