@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-8 offset-md-2 mt-4">
+  <h2>Add Product for {{ client_record.full_name }}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-success">Save</button>
+   <a href="{% url 'client_products' client_pk=client.pk %}" class="btn btn-secondary">Cancel</a>
+
+  </form>
+</div>
+{% endblock %}

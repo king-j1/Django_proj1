@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Product Purchase</h1>
+
+<p>
+  <!-- ✅ fixed wrong url and context -->
+  <a href="{% url 'add_product' client_record.id %}" class="btn btn-primary mb-3">Add New Product</a>
+</p>
+
+<div class="card mb-4">
+  <h5 class="card-header">{{ client_record.id }} - {{ client_record.full_name }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Client: {{ client_record.full_name }}</h5>
+    <p class="card-text">Email: {{ client_record.email }}</p>
+    <p class="card-text">Phone: {{ client_record.phone }}</p>
+    <p class="card-text">Country: {{ client_record.country }}</p>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back to Client List</a>
+  </div>
+</div>
+
+<!-- ✅ show products -->
+{% if products %}
+  <h3>Purchased Products</h3>
+  <ul class="list-group">
+    {% for product in products %}
+      <li class="list-group-item">
+        {{ product.name }} — {{ product.price }}  
+        <small class="text-muted">({{ product.created_at|date:"Y-m-d" }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No products purchased yet.</p>
+{% endif %}
+
+{% endblock %}
