@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Client, Product
 
 
@@ -23,14 +23,24 @@ class ClientForm(forms.ModelForm):
         model = Client
         fields = [
             "full_name", "email", "phone", "address",
-            "city", "state", "country", "zip_code"
+            "city", "state", "country", "zip_code",
+            "profile_photo",  # 👈 added here
         ]
 
 
 # -------------------------
-# Product Form (FIXED)
+# Product Form (with Image)
 # -------------------------
+from django import forms
+from .models import Product
+
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["product_name", "price", "description"]
+        fields = ["product_name", "product_code", "price", "description", "image"]
+
+    def clean_price(self):
+        price = self.cleaned_data.get("price")
+        if price is not None and price < 0:
+            raise forms.ValidationError("Price cannot be negative.")
+        return price

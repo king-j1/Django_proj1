@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h2>Invoices</h2>
+<a href="#" class="btn btn-primary mb-3">+ Create Invoice</a>
+<ul>
+    {% for invoice in invoices %}
+        <li>{{ invoice.number }} - {{ invoice.total }}</li>
+    {% empty %}
+        <li>No invoices yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

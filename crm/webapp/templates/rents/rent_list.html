@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h2>Rents</h2>
+<a href="#" class="btn btn-primary mb-3">+ Add Rent</a>
+<ul>
+    {% for rent in rents %}
+        <li>{{ rent.item }} - {{ rent.amount }}</li>
+    {% empty %}
+        <li>No rents yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

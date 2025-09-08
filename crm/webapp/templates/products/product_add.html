@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+<h2>Add Product for {{ client.full_name }}</h2>
+
+<form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    <div class="mb-3">
+        {{ form.product_name.label_tag }}
+        {{ form.product_name }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.description.label_tag }}
+        {{ form.description }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.price.label_tag }}
+        {{ form.price }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.image.label_tag }}
+        {{ form.image }}
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'product_list' client.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

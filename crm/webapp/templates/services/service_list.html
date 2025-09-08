@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h2>Services</h2>
+<a href="#" class="btn btn-primary mb-3">+ Add Service</a>
+<ul>
+    {% for service in services %}
+        <li>{{ service.name }}</li>
+    {% empty %}
+        <li>No services yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

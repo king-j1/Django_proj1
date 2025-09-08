@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+
+{% block title %}Clients{% endblock %}
+
+{% block content %}
+<h2>Clients</h2>
+<a href="{% url 'client_add' %}" class="btn btn-primary mb-3">➕ Add Client</a>
+
+<div class="row">
+    {% for client in clients %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100 shadow-sm">
+                {% if client.profile_photo %}
+                    <img src="{{ client.profile_photo.url }}" 
+                         class="card-img-top" 
+                         alt="{{ client.full_name }}" 
+                         style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height:200px;">
+                        <span class="text-muted">No Photo</span>
+                    </div>
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ client.full_name }}</h5>
+                    <p class="card-text"><strong>ID:</strong> {{ client.id }}</p>
+                    <p class="card-text"><strong>Phone:</strong> {{ client.phone }}</p>
+                    <p class="card-text"><strong>Address:</strong> {{ client.address }}</p>
+
+                    <a href="{% url 'client_detail' client.pk %}" class="btn btn-sm btn-primary">View</a>
+                    <a href="{% url 'client_edit' client.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No clients found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

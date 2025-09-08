@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h2>Feedback</h2>
+<a href="#" class="btn btn-primary mb-3">+ Add Feedback</a>
+<ul>
+    {% for fb in feedbacks %}
+        <li>{{ fb.user }} - {{ fb.comment }}</li>
+    {% empty %}
+        <li>No feedback yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
