@@ -1,0 +1,15 @@
+{% extends "core/base.html" %}
+
+{% block title %}Add / Edit Product{% endblock %}
+
+{% block content %}
+<h2>{{ client.full_name }} — Add / Edit Product</h2>
+
+<form method="post" enctype="multipart/form-data">  <!-- 🔑 enctype added -->
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'product_list' client.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
+

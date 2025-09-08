@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block content %}
+<h2>Edit Product: {{ product.product_name }}</h2>
+
+<form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+    {% csrf_token %}
+    <div class="mb-3">
+        {{ form.product_name.label_tag }}
+        {{ form.product_name }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.description.label_tag }}
+        {{ form.description }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.price.label_tag }}
+        {{ form.price }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.image.label_tag }}
+        {{ form.image }}
+        {% if product.image %}
+            <div class="mt-2">
+                <p>Current Image:</p>
+                <img src="{{ product.image.url }}" alt="{{ product.product_name }}" width="150">
+            </div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="{% url 'product_detail' client.pk product.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

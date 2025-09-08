@@ -1,0 +1,26 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ client|default_if_none:"Add" }} Client{% endblock %}
+
+{% block content %}
+<h2>{{ client|default_if_none:"Add New" }} Client</h2>
+
+<form method="post" enctype="multipart/form-data" class="mt-3">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <!-- Show current profile photo if editing -->
+    {% if client and client.profile_photo %}
+        <div class="mb-3">
+            <p><strong>Current Photo:</strong></p>
+            <img src="{{ client.profile_photo.url }}" 
+                 alt="{{ client.full_name }}" 
+                 class="img-thumbnail" 
+                 style="max-width: 200px; max-height:200px;">
+        </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'client_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

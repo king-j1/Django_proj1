@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% block content %}
+<h2>Orders</h2>
+<a href="#" class="btn btn-primary mb-3">+ Add Order</a>
+<ul>
+    {% for order in orders %}
+        <li>{{ order.id }} - {{ order.status }}</li>
+    {% empty %}
+        <li>No orders yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
